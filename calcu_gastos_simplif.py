@@ -20,7 +20,8 @@ def cuota(lista):
     for i in range(len(lista)):
         total=total+lista[i][1]
     
-    cuota=total/len(lista)
+    division=total/len(lista)
+    cuota=round(division,2)
     print (('el total es ', total, 'per capita son: ', cuota))
     return('el total es ', total, 'per capita son: ', cuota)
 
@@ -34,9 +35,13 @@ def define_deudores_acreed (entrada, cuota):
     for i in range(len(entrada)):
         cada_entrada=entrada[i]
         if cada_entrada[1]<cuota:
-            deudores.append((cada_entrada[0],cuota-cada_entrada[1]))
+            resta1=round(cuota-cada_entrada[1],2)
+            tupla1=(cada_entrada[0],resta1)
+            deudores.append(tupla1)
         if cada_entrada[1]> cuota:
-            exceso.append((cada_entrada[0],cada_entrada[1]-cuota))
+            resta2=round(cada_entrada[1]-cuota,2)
+            tupla2=(cada_entrada[0],resta2)
+            exceso.append(tupla2)
     
     print('los deudores son', deudores,' hay que pagarles a ', exceso)
     return('los deudores son', deudores,' hay que pagarles a ', exceso)
@@ -77,15 +82,13 @@ deudores_desc=ordena_lista_tuplas(casoej[1], 1,descendente=True) #esto deberia s
 
 exceso_desc=ordena_lista_tuplas(casoej[3], 1,descendente=True) #esto deberia ser llamado dentro de una funcion
 
-
+#convierto a listas las tuplas para poder reasignarles valores
+solo_deudas=de_tupla_a_lista(deudores_desc)     #lista de los que tienen que pagar OJO que usa una variable global
+    
+exceso_plata=de_tupla_a_lista(exceso_desc)  #lista de los que tienen que cobrar  OJO que usa una variable global
 #%%
 
-def quien_paga_cuanto(lista):
-    
-    #convierto a listas las tuplas para poder reasignarles valores
-    solo_deudas=de_tupla_a_lista(deudores_desc)     #lista de los que tienen que pagar OJO que usa una variable global
-    
-    exceso_plata=de_tupla_a_lista(exceso_desc)  #lista de los que tienen que cobrar  OJO que usa una variable global
+def quien_paga_cuanto(solo_deudas,exceso_plata):
     
     i=0
     
@@ -112,7 +115,46 @@ def quien_paga_cuanto(lista):
         else :
             pass
 
-print(quien_paga_cuanto(casoej))
+# %%
+
+#version que andaba pero rompi
+
+# def quien_paga_cuanto(solo_deudas, exceso_plata):
+    
+#     i=0
+#     # mensajes=[]
+#     while len(solo_deudas)>0:
+#         # print('len de solo_deudas es: ', len(solo_deudas))
+#         if solo_deudas[i][1]<=exceso_plata[i][1]:
+#             # print('deudas:', solo_deudas, 'acreededores: ',exceso_plata)
+#             exceso_plata[i][1]=exceso_plata[i][1]-solo_deudas[i][1]
+#             print(solo_deudas[i][0], 'le paga a ', exceso_plata[i][0], solo_deudas[i][1])
+#             comentario=(solo_deudas[i][0], 'le paga a ', exceso_plata[i][0], solo_deudas[i][1])
+#             print(comentario)
+#             # mensajes.append(comentario)
+#             solo_deudas[i][1]=0
+#             # print(solo_deudas)
+#             solo_deudas.pop(0)  
+#             # print(solo_deudas)
+    
+#         if solo_deudas[i][1]> exceso_plata[i][1]:
+#             # print('deudas:', solo_deudas, 'acreededores: ',exceso_plata)
+#             solo_deudas[i][1]=solo_deudas[i][1]-exceso_plata[i][1]
+#             print(solo_deudas[i][0], 'le paga a ', exceso_plata[i][0], exceso_plata[i][1])
+#             comentario2=(solo_deudas[i][0], 'le paga a ', exceso_plata[i][0], exceso_plata[i][1])
+#             print(comentario2)
+#             # mensajes.append(comentario2)
+#             exceso_plata[i][1]=0
+#             # print(exceso_plata)
+#             exceso_plata.pop(0)
+#             # print(exceso_plata)
+            
+#         # else :
+#         #     pass
+    
+#     # print(mensajes)
+
+# # a=quien_paga_cuanto(solo_deudas,exceso_plata)
     
 #%% esta es MI version pero no anda (no lo gra generar lista de salida)
 
