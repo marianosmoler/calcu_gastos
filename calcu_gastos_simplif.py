@@ -23,7 +23,8 @@ def cuota(lista):
     division=total/len(lista)
     cuota=round(division,2)
     # print (('el total es ', total, 'per capita son: ', cuota))
-    return('el total es ', total, 'per capita son: ', cuota)
+    # return('el total es ', total, 'per capita son: ', cuota)
+    return(cuota)
 
 
 #%%       
@@ -44,7 +45,8 @@ def define_deudores_acreed (entrada, cuota):
             exceso.append(tupla2)
     
     # print('los deudores son', deudores,' hay que pagarles a ', exceso)
-    return('los deudores son', deudores,' hay que pagarles a ', exceso)
+    # return('los deudores son', deudores,' hay que pagarles a ', exceso)
+    return(deudores, exceso)
 
 # print(define_deudores_acreed(ejemplo,320))
 
@@ -71,38 +73,9 @@ def ordena_lista_tuplas(lista, elemento, descendente=True):
 
 
 
-#%%
-
-# def quien_paga_cuanto(solo_deudas,exceso_plata):
-    
-#     i=0
-    
-#     while len(solo_deudas)>0:
-#         # print('len de solo_deudas es: ', len(solo_deudas))
-#         if solo_deudas[i][1]<=exceso_plata[i][1]:
-#             # print('deudas:', solo_deudas, 'acreededores: ',exceso_plata)
-#             exceso_plata[i][1]=exceso_plata[i][1]-solo_deudas[i][1]
-#             print(solo_deudas[i][0], 'le paga a ', exceso_plata[i][0], solo_deudas[i][1])
-#             solo_deudas[i][1]=0
-#             # print(solo_deudas)
-#             solo_deudas.pop(0)  
-#             # print(solo_deudas)
-    
-#         if solo_deudas[i][1]> exceso_plata[i][1]:
-#             # print('deudas:', solo_deudas, 'acreededores: ',exceso_plata)
-#             solo_deudas[i][1]=solo_deudas[i][1]-exceso_plata[i][1]
-#             print(solo_deudas[i][0], 'le paga a ', exceso_plata[i][0], exceso_plata[i][1])
-#             exceso_plata[i][1]=0
-#             # print(exceso_plata)
-#             exceso_plata.pop(0)
-#             # print(exceso_plata)
-            
-#         else :
-#             pass
 
 # %%
 
-#version que andaba pero rompi
 
 def quien_paga_cuanto(solo_deudas, exceso_plata):
     
@@ -134,29 +107,29 @@ def quien_paga_cuanto(solo_deudas, exceso_plata):
         except IndexError:
             break
         
-        # print("\n".join( mensajes))
-    
-    return"\n".join( mensajes)
+    return("\n".join(mensajes))
 
     
 #%%
 
-cuotaej= cuota(ejemplo)
-
-casoej=define_deudores_acreed(ejemplo, cuotaej[3])
-
-deudores_desc=ordena_lista_tuplas(casoej[1], 1,descendente=True) #esto deberia ser llamado dentro de una funcion
-
-exceso_desc=ordena_lista_tuplas(casoej[3], 1,descendente=True) #esto deberia ser llamado dentro de una funcion
-
-#convierto a listas las tuplas para poder reasignarles valores
-solo_deudas=de_tupla_a_lista(deudores_desc)     #lista de los que tienen que pagar OJO que usa una variable global
+def mostrar_salida (vector):
     
-exceso_plata=de_tupla_a_lista(exceso_desc)  #lista de los que tienen que cobrar  OJO que usa una variable global
-
-quien_paga_cuanto(solo_deudas, exceso_plata)
-
-print(quien_paga_cuanto(solo_deudas,exceso_plata))
+    cuotaej= cuota(vector) #calcula la cuota de cada persona
+    
+    casoej=define_deudores_acreed(ejemplo, cuotaej)
+    
+    deudores_desc=ordena_lista_tuplas(casoej[0], 1,descendente=True) #ordena la lista de deudores 
+    
+    exceso_desc=ordena_lista_tuplas(casoej[1], 1,descendente=True) #ordena la lista de acreededores
+    
+    #convierto a listas las tuplas para poder reasignarles valores
+    losqdeben=de_tupla_a_lista(deudores_desc)     #lista de los que tienen que pagar
+        
+    losqcobran=de_tupla_a_lista(exceso_desc)  #lista de los que tienen que cobrar
+    
+    salida=quien_paga_cuanto(losqdeben, losqcobran)
+    
+    print(salida)
 
 #%% esta es MI version pero no anda (no lo gra generar lista de salida)
 
