@@ -6,7 +6,10 @@ Created on Sun May 26 21:36:34 2024
 """
 #%%
 
+import sys
+import json
 from operator import itemgetter
+
 
 #%%
 # ejemplo=[('Ballester',85776), ('Park Av',0),('Hele',17800),('Gabi',8200),('Munro',0),('Urquiza',0)]
@@ -132,6 +135,17 @@ def mostrar_salida (vector):
     salida=quien_paga_cuanto(losqdeben, losqcobran)
     
     print(salida)
+    
+    
+#%%
+
+"este es el intento para ejecutarlo desde la consola de windows --> esta dando error"
+
+if __name__ == "__main__":
+    json_str=sys.argv[1]
+    de_consola=json.loads(json_str)
+    mostrar_salida(de_consola)
+
 
 #%% esta es MI version pero no anda (no lo gra generar lista de salida)
 
