@@ -11,7 +11,7 @@ from operator import itemgetter
 #%%
 # ejemplo=[('Ballester',85776), ('Park Av',0),('Hele',17800),('Gabi',8200),('Munro',0),('Urquiza',0)]
 ejemplo=[('Nacho',80776), ('Nuria',5000),('Marian',0),('Kuko',0),('Hele',17800),('Gabi',8200),('Guille',0),('Dogui',40000),('Belen',0), ('Dante',0)]
-
+ejemplo2=[('Uli',10000),('Manu',0),('Mariano',15000),('Dani',42600),('Diega',0),('Nico',0)]
 # ejemplo2=[('Kuko',10000),('Nuria',49400),('nacho',9600),('marian',0),('guille',0),('gabi',0),('hele',0),('dan',0),('belen',0)]
 
 #%%
@@ -21,10 +21,12 @@ def cuota(lista):
         total=total+lista[i][1]
     
     division=total/len(lista)
-    cuota=round(division,2)
+    # cuota=round(division,2)
     # print (('el total es ', total, 'per capita son: ', cuota))
     # return('el total es ', total, 'per capita son: ', cuota)
-    return(cuota)
+    comentario=f"el total es ${total}, por persona es ${round(division,2)}"
+    print(comentario)
+    return(division)
 
 
 #%%       
@@ -116,7 +118,7 @@ def mostrar_salida (vector):
     
     cuotaej= cuota(vector) #calcula la cuota de cada persona
     
-    casoej=define_deudores_acreed(ejemplo, cuotaej)
+    casoej=define_deudores_acreed(vector, cuotaej)
     
     deudores_desc=ordena_lista_tuplas(casoej[0], 1,descendente=True) #ordena la lista de deudores 
     
