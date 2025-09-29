@@ -9,6 +9,7 @@ Created on Sun May 26 21:36:34 2024
 import sys
 import json
 from operator import itemgetter
+import interfaz_carga_vector as otropy
 
 
 #%%
@@ -117,7 +118,9 @@ def quien_paga_cuanto(solo_deudas, exceso_plata):
     
 #%%
 
-def mostrar_salida (vector):
+def mostrar_salida ():
+    
+    vector=otropy.carga_vector()
     
     cuotaej= cuota(vector) #calcula la cuota de cada persona
     
@@ -142,9 +145,10 @@ def mostrar_salida (vector):
 "este es el intento para ejecutarlo desde la consola de windows --> esta dando error"
 
 if __name__ == "__main__":
-    json_str=sys.argv[1]
-    de_consola=json.loads(json_str)
-    mostrar_salida(de_consola)
+    # json_str=sys.argv[1]
+    # de_consola=json.loads(json_str)
+    # mostrar_salida(de_consola)
+    mostrar_salida()
 
 
 #%% esta es MI version pero no anda (no lo gra generar lista de salida)
