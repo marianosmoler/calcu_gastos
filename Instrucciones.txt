@@ -1,0 +1,25 @@
+Como usarlo desde la consola de windows
+La idea es que sea sencillo de usar, con una entrada facil y clara de los datos y una única salida donde se ve el resultado de forma limpia.
+
+-Requisitos: tener instalado python 3 (no probe con la python 2, pero pienso que podría funcionar igual)
+
+Instrucciones:
+
+1. Ir al directiorio donde estan los archivos, por ej: C:\Users\maria\Documents\calcu_gastos>
+
+2. llamar al archivo principal: python3 calcu_gastos_simplif.py
+
+3. Ingresar unicamente la cantidad de personas entre las cuales se van a repartir gastos (solo números enteros y positivos)
+
+4. ingresar nombre y monto de cada persona, separados por un espacio y apretar enter.
+
+5. una vez ingresado el ultimo dato, la salida se muestra en pantalla, ej:
+Cantidad de personas: 4
+nombre y monto: A 56
+nombre y monto: B 37.5
+nombre y monto: C 109
+nombre y monto: D 15.83
+el total es $218.33, por persona es $54.58
+D le paga a C $38.75
+B le paga a C $15.66
+B le paga a A $1.42
